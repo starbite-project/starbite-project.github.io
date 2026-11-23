@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Starbite · every OS on a Galaxy S9</title>
+<meta name="description" content="iOS, iPadOS, macOS, Windows 11, Linux, ChromiumOS, Android and our own OS on one 2018 Samsung Galaxy S9, with GPU drivers we wrote. Open source.">
+<meta property="og:title" content="Starbite · every OS on a Galaxy S9">
+<meta property="og:description" content="iOS, macOS, Windows 11, Linux, ChromiumOS, Android and our own OS on one 2018 phone. Open source.">
+<meta property="og:image" content="img/home.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060a1f;--bg2:#0b1230;--glass:rgba(255,255,255,.06);--glass2:rgba(255,255,255,.1);
+  --line:rgba(255,255,255,.12);--fg:#f2f4ff;--mut:#aab2d6;--dim:#7d86b0;
+  --blue:#4da3ff;--cyan:#5ee1ff;--violet:#9b7bff;--gold:#ffd166;--green:#4ee59a;--red:#ff6b6b;
+  --r:22px;
+}
+*{box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--fg);font:17px/1.6 Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;
+  background:
+   radial-gradient(1100px 700px at 85% -5%,rgba(91,74,255,.35),transparent 60%),
+   radial-gradient(900px 600px at -10% 15%,rgba(0,150,255,.25),transparent 60%),
+   radial-gradient(1000px 800px at 50% 110%,rgba(120,60,255,.18),transparent 60%),
+   var(--bg);background-attachment:fixed}
+a{color:var(--cyan);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+.glass{background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.035));border:1px solid var(--line);border-radius:var(--r);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 1px 0 rgba(255,255,255,.08) inset,0 20px 60px rgba(0,0,0,.35)}
+nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:rgba(6,10,31,.6);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-weight:800;font-size:20px;letter-spacing:-.02em;color:var(--fg)}
+.brand b{color:var(--cyan)}
+.brand sup{color:var(--cyan);font-size:14px}
+nav .links{display:flex;gap:22px;font-size:15px}
+nav .links a{color:var(--mut)}
+nav .links a:hover{color:var(--fg);text-decoration:none}
+.gh{padding:8px 14px;border-radius:999px;background:var(--fg);color:#0b1230 !important;font-weight:700}
+
+/* hero */
+.hero{padding:80px 20px 40px;display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;font-size:14px;font-weight:600;color:var(--cyan);padding:6px 12px;border-radius:999px;border:1px solid rgba(94,225,255,.35);background:rgba(94,225,255,.08)}
+h1{font-size:clamp(46px,7.2vw,92px);line-height:.95;letter-spacing:-.045em;font-weight:900;margin:18px 0 18px}
+h1 .g{background:linear-gradient(100deg,#fff 0%,#bcd6ff 35%,var(--cyan) 65%,var(--violet) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:clamp(18px,2.1vw,21px);color:var(--mut);max-width:560px;margin:0}
+.lead b{color:var(--fg);font-weight:600}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:999px;font-weight:700;font-size:16px}
+.btn.p{background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;box-shadow:0 10px 30px rgba(77,163,255,.35)}
+.btn.s{border:1px solid var(--line);color:var(--fg);background:var(--glass)}
+.btn:hover{text-decoration:none;transform:translateY(-1px)}
+.phones{position:relative;height:600px}
+.phone{position:absolute;width:250px;aspect-ratio:720/1480;border-radius:42px;padding:9px;background:linear-gradient(145deg,#2a3150,#0d1124);box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.12)}
+.phone img{width:100%;height:100%;object-fit:cover;border-radius:34px;display:block}
+.phone.a{left:2%;top:60px;transform:rotate(-8deg);opacity:.92}
+.phone.b{left:31%;top:0;z-index:2;width:270px}
+.phone.c{right:0;top:70px;transform:rotate(8deg);opacity:.92}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:30px auto 10px}
+.stat{padding:22px}
+.stat .n{font-size:40px;font-weight:900;letter-spacing:-.03em;line-height:1}
+.stat .l{color:var(--mut);font-size:14px;margin-top:6px}
+
+section{padding:90px 20px 20px}
+.kicker{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+h2{font-size:clamp(32px,4.4vw,52px);line-height:1.05;letter-spacing:-.035em;margin:10px 0 14px;font-weight:800}
+.intro{color:var(--mut);max-width:720px;margin:0 0 34px;font-size:18px}
+
+.big3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+.b3{padding:28px;position:relative;overflow:hidden}
+.b3:after{content:"";position:absolute;inset:auto -40% -60% auto;width:300px;height:300px;background:radial-gradient(circle,rgba(94,225,255,.18),transparent 70%)}
+.b3n{font-size:64px;font-weight:900;letter-spacing:-.05em;line-height:1;background:linear-gradient(100deg,#fff,var(--cyan) 60%,var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.b3 h3{margin:8px 0 10px;font-size:22px;letter-spacing:-.01em}
+.b3 p{margin:0;color:var(--mut);font-size:15.5px}
+.sf{padding:44px;display:grid;grid-template-columns:1.3fr 1fr;gap:30px;align-items:center;background:linear-gradient(135deg,rgba(77,163,255,.16),rgba(155,123,255,.16));border-color:rgba(155,123,255,.4)}
+.sf h2 b{background:linear-gradient(100deg,#fff,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sf ul{margin:0;padding-left:18px;color:var(--mut)}
+.sf li{margin:7px 0}
+/* OS grid */
+.os{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.oscard{padding:24px;position:relative;overflow:hidden}
+.oscard .ic{width:54px;height:54px;border-radius:15px;display:grid;place-items:center;font-weight:900;font-size:20px;margin-bottom:16px;color:#fff}
+.oscard h3{margin:0 0 6px;font-size:21px;letter-spacing:-.01em}
+.oscard p{margin:0;color:var(--mut);font-size:15.5px}
+.oscard .lvl{position:absolute;top:22px;right:22px;font-size:12px;font-weight:700;color:var(--green);background:rgba(78,229,154,.1);border:1px solid rgba(78,229,154,.3);padding:3px 9px;border-radius:999px}
+
+/* gallery */
+.gallery{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 4px 30px;scrollbar-width:thin}
+.shot{flex:0 0 auto;scroll-snap-align:start;text-align:center}
+.shot .phone{position:relative;width:240px;transform:none;opacity:1}
+.shot figcaption{margin-top:14px;font-weight:600}
+.shot figcaption span{display:block;color:var(--dim);font-weight:400;font-size:14px}
+
+/* firsts */
+.firsts{display:grid;gap:14px}
+.first{display:grid;grid-template-columns:70px 1fr auto;gap:18px;align-items:center;padding:20px 24px}
+.rank{font-size:34px;font-weight:900;letter-spacing:-.04em;background:linear-gradient(180deg,#ffe8a3,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;text-align:center}
+.first h3{margin:0 0 4px;font-size:19px}
+.first p{margin:0;color:var(--mut);font-size:15px}
+.pill{font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;white-space:nowrap}
+.pill.w{color:var(--gold);background:rgba(255,209,102,.1);border:1px solid rgba(255,209,102,.35)}
+.pill.m{color:var(--cyan);background:rgba(94,225,255,.08);border:1px solid rgba(94,225,255,.3)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.box{padding:24px}
+.box h3{margin:0 0 10px;font-size:18px}
+.box ul{margin:0;padding-left:18px;color:var(--mut);font-size:15.5px}
+.box li{margin:6px 0}
+
+/* stories */
+.stories{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.story{padding:24px}
+.story .big{font-size:44px;font-weight:900;letter-spacing:-.04em;line-height:1;background:linear-gradient(100deg,#fff,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.story h3{margin:12px 0 6px;font-size:18px}
+.story p{margin:0;color:var(--mut);font-size:15px}
+
+/* timeline */
+.tl{position:relative;margin-left:8px;padding-left:30px;border-left:2px solid rgba(94,225,255,.25)}
+.ev{position:relative;padding:0 0 26px}
+.ev:before{content:"";position:absolute;left:-38px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--cyan);box-shadow:0 0 14px var(--cyan)}
+.ev .d{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--cyan)}
+.ev .t{font-size:17px}
+
+/* try it */
+.try{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
+.warn{border-color:rgba(255,209,102,.35);background:linear-gradient(180deg,rgba(255,209,102,.08),rgba(255,209,102,.02))}
+.warn h3{color:var(--gold)}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:s;position:relative;padding-left:40px;margin:12px 0;color:var(--mut);font-size:15.5px}
+.steps li b{color:var(--fg)}
+.steps li:before{content:counter(s);position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800;background:var(--glass2);color:var(--fg)}
+table{width:100%;border-collapse:collapse;font-size:15px}
+td{padding:11px 4px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--mut)}
+td:first-child{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--cyan);white-space:nowrap;padding-right:16px}
+tr:last-child td{border-bottom:0}
+code{font-family:"JetBrains Mono",monospace;font-size:13px;background:var(--glass2);padding:2px 7px;border-radius:7px}
+footer{padding:70px 20px 60px;color:var(--dim);font-size:14px;text-align:center}
+footer p{max-width:760px;margin:8px auto}
+
+@media(max-width:920px){
+  .hero{grid-template-columns:1fr;padding-top:50px}
+  .hero>*{min-width:0}
+  .phones{height:470px;max-width:520px;margin:0 auto;width:100%}
+  .phone{width:190px}.phone.b{width:210px;left:28%}
+  .os,.stories{grid-template-columns:1fr 1fr}
+  .big3{grid-template-columns:1fr}.sf{grid-template-columns:1fr;padding:28px}
+  .try,.cols{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  body{font-size:16px}
+  nav .links a:not(.gh){display:none}
+  .phones{height:380px}
+  .phone{width:150px;border-radius:30px;padding:6px}.phone img{border-radius:25px}
+  .phone.b{width:170px;left:calc(50% - 85px)}
+  .phone.a{left:0}.phone.c{right:6%}
+  .os,.stories{grid-template-columns:1fr}
+  .first{grid-template-columns:44px 1fr;padding:18px}
+  .first .pill{grid-column:2;justify-self:start}
+  .rank{font-size:26px}
+  .shot .phone{width:200px}
+  td:first-child{white-space:normal}
+}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="#">star<b>bite</b><sup>✦</sup></a>
+  <div class="links">
+    <a href="#systems">Systems</a><a href="#os">Starbite OS</a><a href="#firsts">Firsts</a><a href="#try">Try it</a><a href="#contribute">Contribute</a><a href="#starfold">Next: Starfold</a>
+    <a class="gh" href="https://github.com/starbite-s9/starbite">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="wrap hero">
+  <div>
+    <span class="eyebrow">✦ Open source · Galaxy S9 · 2026</span>
+    <h1><span class="g">Every OS.<br>One phone.</span></h1>
+    <p class="lead">A 2018 Samsung Galaxy S9 running <b>iOS, iPadOS, macOS, Windows 11, Linux, ChromiumOS and Android</b>, plus <b>an operating system we wrote ourselves</b>. One boot loader picks between them, and our own GPU drivers draw the screen on the phone's Mali GPU.</p>
+    <div class="cta">
+      <a class="btn p" href="https://github.com/starbite-s9/starbite">View the source →</a>
+      <a class="btn s" href="#firsts">World firsts</a>
+    </div>
+  </div>
+  <div class="phones" aria-hidden="true">
+    <div class="phone a"><img src="img/lock.png" alt=""></div>
+    <div class="phone b"><img src="img/home.png" alt=""></div>
+    <div class="phone c"><img src="img/emergency.png" alt=""></div>
+  </div>
+</header>
+
+<div class="wrap stats">
+  <div class="stat glass"><div class="n">10+</div><div class="l">operating systems on one phone</div></div>
+  <div class="stat glass"><div class="n">4</div><div class="l">GPU stacks on one Mali: iOS, macOS, Windows, Linux</div></div>
+  <div class="stat glass"><div class="n">2018</div><div class="l">the phone: Exynos 9810, Mali-G72, 4 GB RAM</div></div>
+  <div class="stat glass"><div class="n">0</div><div class="l">vendor binaries in this repo</div></div>
+</div>
+
+<section class="wrap" style="padding-top:60px">
+  <div class="kicker">The headline</div>
+  <h2>Things nobody had done before.</h2>
+  <div class="big3">
+    <div class="b3 glass"><div class="b3n">macOS</div><h3>on a phone. Natively.</h3><p>Not in a virtual machine and not on a laptop. A real macOS desktop with Dock, Finder and menu bar, booted straight on a Galaxy S9 and drawn by its Mali GPU through a Metal driver we wrote. As far as we can find, the first time anyone has done it.</p></div>
+    <div class="b3 glass"><div class="b3n">LTE</div><h3>through Samsung's modem, with open code.</h3><p>Samsung's Shannon modem only talks to Samsung's own closed software. We booted it, served it its own calibration files, attached to the network and loaded HTTPS pages over a real SIM, from an OS we wrote ourselves.</p></div>
+    <div class="b3 glass"><div class="b3n">10+</div><h3>systems from one loader.</h3><p>iOS, iPadOS, macOS, Windows 11, Linux, ChromiumOS, Android 17, One UI 8 and Starbite OS, all bare metal on one 2018 phone. No other device we know of boots this lineup.</p></div>
+  </div>
+</section>
+
+<section id="systems" class="wrap">
+  <div class="kicker">The lineup</div>
+  <h2>Each of these ran on the phone itself.</h2>
+  <p class="intro">Nothing here is an emulator or a virtual machine. Every system boots natively from Starbite's own loader in the phone's BOOT partition.</p>
+  <div class="os">
+    <div class="oscard glass"><span class="lvl">Home screen</span><div class="ic" style="background:linear-gradient(135deg,#5ac8fa,#007aff)">iOS</div><h3>iOS 16 · 26 · 27, iPadOS 18</h3><p>Our own XNU kernel build, device tree and drivers. CoreAnimation draws the interface on the Mali, first through OpenGL ES, later through Metal on Vulkan.</p></div>
+    <div class="oscard glass"><span class="lvl">Desktop</span><div class="ic" style="background:linear-gradient(135deg,#b06ab3,#4568dc)">mac</div><h3>macOS Ventura &amp; Sequoia</h3><p>Menu bar, Dock and Finder, composited on the GPU through our Metal bridge. Touch works as a trackpad, at 2x HiDPI.</p></div>
+    <div class="oscard glass"><span class="lvl">Desktop + GPU</span><div class="ic" style="background:linear-gradient(135deg,#00c6ff,#0072ff)">W11</div><h3>Windows 11</h3><p>Our own UEFI, ACPI and drivers. A WDDM GPU driver on Mesa, all eight cores, x86 apps and Steam games, Geometry Dash at 60 fps.</p></div>
+    <div class="oscard glass"><span class="lvl">Desktop + GPU</span><div class="ic" style="background:linear-gradient(135deg,#f7b733,#fc4a1a)">Lx</div><h3>Linux · postmarketOS</h3><p>Mainline kernel with Panfrost GPU, display and Wi-Fi.</p></div>
+    <div class="oscard glass"><span class="lvl">Welcome screen</span><div class="ic" style="background:linear-gradient(135deg,#34a853,#4285f4)">CrOS</div><h3>ChromiumOS</h3><p>GPU-accelerated through Panfrost, with a working guest session.</p></div>
+    <div class="oscard glass"><span class="lvl">Home screen</span><div class="ic" style="background:linear-gradient(135deg,#3ddc84,#1a8f55)">And</div><h3>Android 17 · One UI 8</h3><p>Both boot from the same loader, side by side with everything else.</p></div>
+  </div>
+</section>
+
+<section id="os" class="wrap">
+  <div class="kicker">Starbite OS Next</div>
+  <h2>Our own phone OS, written from scratch.</h2>
+  <p class="intro">Not Linux, not Android. Its own kernel, its own GPU compositor with a glass look, and its own drivers: Wi-Fi with WPA3, Bluetooth, camera, sound, and LTE data through Samsung's Shannon modem. Its lock screen is also the place to pick which OS to start. It runs real Linux desktop apps from its own App Store, and it has an emergency mode with a survival heater, SOS beacon and medical card.</p>
+  <div class="gallery">
+    <figure class="shot"><div class="phone"><img src="img/lock.png" alt="Starbite OS lock screen listing Apple, Microsoft, Google and Linux systems" loading="lazy"></div><figcaption>Lock screen<span>Pick an OS right here</span></figcaption></figure>
+    <figure class="shot"><div class="phone"><img src="img/home.png" alt="Starbite OS home screen with widgets and app icons" loading="lazy"></div><figcaption>Home<span>Widgets, recent systems</span></figcaption></figure>
+    <figure class="shot"><div class="phone"><img src="img/control.png" alt="Starbite OS control center" loading="lazy"></div><figcaption>Control Center<span>Glass, blur, sliders</span></figcaption></figure>
+    <figure class="shot"><div class="phone"><img src="img/store.png" alt="Starbite OS App Store with Firefox, GIMP and LibreOffice" loading="lazy"></div><figcaption>App Store<span>Real Linux apps from Debian</span></figcaption></figure>
+    <figure class="shot"><div class="phone"><img src="img/emergency.png" alt="Starbite OS emergency mode with survival heat and SOS" loading="lazy"></div><figcaption>Emergency mode<span>Survival heat, SOS, medical card</span></figcaption></figure>
+    <figure class="shot"><div class="phone"><img src="img/switcher.png" alt="Starbite OS app switcher" loading="lazy"></div><figcaption>App switcher<span>Multitasking</span></figcaption></figure>
+    <figure class="shot"><div class="phone"><img src="img/settings.png" alt="Starbite OS settings" loading="lazy"></div><figcaption>Settings<span>Wi-Fi, cellular, display</span></figcaption></figure>
+    <figure class="shot"><div class="phone"><img src="img/phone.png" alt="Starbite OS phone keypad" loading="lazy"></div><figcaption>Phone<span>Dialer, recents, contacts</span></figcaption></figure>
+  </div>
+</section>
+
+<section id="firsts" class="wrap">
+  <div class="kicker">World firsts · checked</div>
+  <h2>What we did first, as far as we can tell.</h2>
+  <p class="intro">On 2026-11-23 we searched the web for earlier work on every claim, and tried to disprove each one. Autumn 2026 was a gold rush: many projects put iOS and macOS on Android hardware, mostly on Qualcomm GPUs. Only what survived that search is listed here. Our dates come from our own git history, which is published in full.</p>
+  <div class="firsts">
+    <div class="first glass"><div class="rank">01</div><div><h3>LTE data through Samsung's Shannon modem with open code</h3><p>Network registration, a data connection and HTTPS on a real SIM, from our own OS, without Samsung's modem software. Data only.</p></div><span class="pill w">No earlier work found</span></div>
+    <div class="first glass"><div class="rank">02</div><div><h3>Apple OSes, Windows, Linux, ChromiumOS and Android, natively on one phone</h3><p>Bare-metal multi-boot from one loader. No virtual machines.</p></div><span class="pill w">No earlier work found</span></div>
+    <div class="first glass"><div class="rank">03</div><div><h3>Windows on Samsung's Mongoose CPU cores, with x86 apps</h3><p>Our own ACPI parking tables, plus a fix for the x86 translation cache, which differs per core type.</p></div><span class="pill w">No earlier work found</span></div>
+    <div class="first glass"><div class="rank">04</div><div><h3>Native macOS desktop on a smartphone</h3><p>Others ran macOS in a VM on a phone, or natively on a laptop. Ours ran natively on a phone, composited on a Mali.</p></div><span class="pill m">First on a phone</span></div>
+    <div class="first glass"><div class="rank">05</div><div><h3>iOS GPU jobs and the CoreAnimation interface on a Mali GPU</h3><p>The "GL backboard hookup" this project began with. An Adreno project came first; ours came before the other Mali ports.</p></div><span class="pill m">First on Mali</span></div>
+    <div class="first glass"><div class="rank">06</div><div><h3>Metal and macOS compositing on a Mali</h3><p>WindowServer and CoreAnimation on the Mali-G72, through Metal → Vulkan → PanVK.</p></div><span class="pill m">First on Mali</span></div>
+    <div class="first glass"><div class="rank">07</div><div><h3>ChromiumOS on a smartphone</h3><p>Earlier ChromiumOS ports on Arm run on boards and laptops.</p></div><span class="pill w">No earlier work found</span></div>
+    <div class="first glass"><div class="rank">08</div><div><h3>DXGI flip model on a Mali, and a Windows GPU desktop on a Mali in a phone</h3><p>Games presented zero-copy through flip model and DirectComposition, using our own driver stack.</p></div><span class="pill w">No earlier work found</span></div>
+  </div>
+  <div class="cols">
+    <div class="box glass"><h3>Also first, as far as we found</h3><ul>
+      <li>A 133,388-site rewrite of iOS 26's shared cache so it runs on cores without LRCPC/LSE</li>
+      <li>iOS 26 on Samsung's Mongoose cores</li>
+      <li>Our own Windows Wi-Fi driver for the S9's Broadcom chip</li>
+      <li>D3D11 from an emulated x64 app on a Mali</li>
+      <li>Our own Engineer OS: bare-metal overclocking of every clock domain on the Exynos 9810</li>
+    </ul></div>
+    <div class="box glass"><h3>Not ours first, to be fair</h3><ul>
+      <li>Windows on the S9 (an earlier community port did it first)</li>
+      <li>iOS on Android phones in general, and iOS 27 on the S9</li>
+      <li>arm64e iOS on a CPU without pointer authentication</li>
+      <li>Phone hand-warmer apps (they date back to 2009). Ours just has real thermal limits.</li>
+    </ul><p style="margin:12px 0 0;font-size:14px"><a href="https://github.com/starbite-s9/starbite/blob/main/WORLD-FIRSTS.md">The full list with sources →</a></p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="kicker">From the lab</div>
+  <h2>Stories behind it.</h2>
+  <div class="stories">
+    <div class="story glass"><div class="big">190 °C</div><h3>The phone that became a hand warmer</h3><p>Starbite OS has a Survival Heat mode for real emergencies. It drives every core, the GPU and the charger at once. Normally it holds the chip at 149 °C, already far past the 125 °C its own thermometer is rated for. In one test, with the sensor's sanity check switched off, it read 190 °C. The back of the phone reached 74.5 °C, and the battery still has a hard stop.</p></div>
+    <div class="story glass"><div class="big">858 MHz</div><h3>A GPU 43% past Samsung's top speed</h3><p>Samsung's tables stop the Mali-G72 at 598 MHz. Engineer OS, our bare-metal tuning tool, ran it at 858 MHz and read its own cycle counter to prove it. We also pushed all four big cores to 2886 MHz, past the stock 2704, until the power chip cut the whole phone off.</p></div>
+    <div class="story glass"><div class="big">133,388</div><h3>Instructions rewritten</h3><p>iOS 26 uses a load instruction the S9's big cores have never heard of. Instead of patching programs one by one, one rule rewrote every occurrence across the entire system, all 133,388 of them, and iOS came up.</p></div>
+    <div class="story glass"><div class="big">1 page</div><h3>The crash that left a note</h3><p>Windows died with no message. Samsung's firmware keeps one small piece of memory alive through a reset, so we made Windows write its last words there. On the next boot we read the stop code back. No more guessing.</p></div>
+    <div class="story glass"><div class="big">2 kinds</div><h3>Of cores, one confused emulator</h3><p>x86 games crashed, but only on the big cores. Windows had saved x86 code translated on the small cores, which have different instructions, and replayed it on the big ones. A tiny driver of ours now keeps each core type's translations apart. Steam runs.</p></div>
+    <div class="story glass"><div class="big">0</div><h3>Help from Samsung's modem software</h3><p>On boot, Samsung's modem asks the phone for its own calibration files over a private protocol. Android normally answers. We wrote the answer ourselves, and the modem came online on a real network.</p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="kicker">Timeline</div>
+  <h2>October 25 to November 16, 2026.</h2>
+  <div class="tl" style="margin-top:30px">
+    <div class="ev"><div class="d">10-25</div><div class="t">Own loader in the BOOT partition. iOS 16 to the home screen with touch. Windows 11 desktop with touch.</div></div>
+    <div class="ev"><div class="d">10-26 → 27</div><div class="t">Mainline Linux and postmarketOS with GPU. First Mali pixels and first triangle under iOS.</div></div>
+    <div class="ev"><div class="d">10-28 → 29</div><div class="t">iPadOS 18.7. CoreAnimation draws the iOS interface on the Mali.</div></div>
+    <div class="ev"><div class="d">11-01 → 02</div><div class="t">iOS 26 usable on the Mali. Vulkan, then Metal, under iOS.</div></div>
+    <div class="ev"><div class="d">11-04 → 05</div><div class="t">macOS Ventura desktop on the Mali. ChromiumOS. LineageOS.</div></div>
+    <div class="ev"><div class="d">11-06 → 07</div><div class="t">One UI 8. Utility OS. Starbite OS 0.1. Windows Wi-Fi. Windows on the S9 as a Mac's second monitor.</div></div>
+    <div class="ev"><div class="d">11-08 → 09</div><div class="t">Starbite OS 1.0. Our own code boots the Shannon modem. Windows draws its own screen on the Mali.</div></div>
+    <div class="ev"><div class="d">11-10 → 11</div><div class="t">Windows on the big cores, x86 apps and Steam. LTE data inside Starbite OS. iOS 27 home screen.</div></div>
+    <div class="ev"><div class="d">11-12 → 16</div><div class="t">Starbite OS Next with Linux apps and an App Store. macOS Sequoia. Geometry Dash at 60 fps on Windows. A second S9 set up from our scripts.</div></div>
+  </div>
+</section>
+
+<section id="try" class="wrap">
+  <div class="kicker">Try it yourself</div>
+  <h2>There is no installer. You figure it out.</h2>
+  <div class="try">
+    <div class="box glass warn"><h3>⚠ Read this first</h3><ul>
+      <li><b>This is not a product.</b> There is no installer that sets things up for you. What's here is the source, the scripts and the notes we used on our own two phones. Getting it onto yours means reading code, fixing paths and working out the gaps yourself.</li>
+      <li>You need your <b>own copies</b> of every OS. No Apple, Samsung, Google, Microsoft or Broadcom files are included, and we won't share them.</li>
+      <li>Only the <b>Exynos Galaxy S9 (SM-G960F)</b>. Other models won't work as is.</li>
+      <li>It changes partitions on your phone. <b>It can brick it.</b> Back up everything. You use it at your own risk.</li>
+      <li>The project is <b>finished and not maintained</b>. Don't expect answers to issues.</li>
+    </ul></div>
+    <div class="box glass"><h3>If you still want to dig in</h3><ol class="steps">
+      <li><b>Read</b> the <code>docs/</code> folder and the branch that covers what you want. The notes are detailed.</li>
+      <li><b>Build the loader</b> (<code>shim/starlte</code>) and the tools on a Mac or a Linux VM.</li>
+      <li><b>Make your own OS images</b> with the scripts under <code>tools/</code>, using your own original software.</li>
+      <li><b>Study the <code>installer</code> branch.</b> It holds the steps we used on our second S9, not a tool that does it for you.</li>
+    </ol></div>
+  </div>
+  <div class="box glass" style="margin-top:16px"><h3>Branches</h3><table>
+    <tr><td>main</td><td>Loader and OS store, XNU patch series, Apple drivers, macOS Sequoia, tools</td></tr>
+    <tr><td>starbite-os</td><td>Starbite OS Next: kernel, shell, drivers, modem, Survival Heat, Face Unlock</td></tr>
+    <tr><td>win11-mali-gpu</td><td>Windows WDDM GPU driver on Mesa for the Mali-G72</td></tr>
+    <tr><td>win11-m3-bigcores</td><td>Windows on the Exynos M3 big cores, and the x86 fixes</td></tr>
+    <tr><td>installer</td><td>The scripts and steps we used on our second S9 (not a finished installer)</td></tr>
+    <tr><td>more</td><td>Wi-Fi core, App Store, USB control, Utility OS, Engineer OS, Linux port, design specs</td></tr>
+  </table></div>
+</section>
+
+<section id="contribute" class="wrap">
+  <div class="box glass" style="padding:34px;text-align:center">
+    <div class="kicker">Contributors wanted</div>
+    <h2 style="margin-top:8px">Take it further.</h2>
+    <p class="intro" style="margin:0 auto 22px">The project is finished on our side, but everything is open. Clean replacements for the removed parts, a real installer, S9+ support, newer OS versions, more drivers: pull requests are welcome. We may be slow, but we will look.</p>
+    <div class="cta" style="justify-content:center"><a class="btn p" href="https://github.com/starbite-s9/starbite">Fork it on GitHub →</a><a class="btn s" href="https://github.com/starbite-s9/starbite#known-gaps">Good first projects</a></div>
+  </div>
+</section>
+
+<section id="starfold" class="wrap">
+  <div class="sf glass">
+    <div>
+      <div class="kicker">The next chapter</div>
+      <h2>Starbite was the warm-up. <b>Starfold</b> is the big one.</h2>
+      <p class="intro" style="margin-bottom:0">Everything we learned on a 2018 phone now goes into a brand-new 2026 flagship foldable, the <b>Google Pixel 11 Pro Fold</b>. Two screens, a hinge and a much faster chip mean bigger goals: every OS, done properly, on the best hardware we have ever had. The name keeps its roots: "star" from <i>starlte</i>, the S9's codename, where it all began.</p>
+    </div>
+    <ul>
+      <li>Every OS again, with <b>full graphics</b> on our own PowerVR drivers</li>
+      <li>macOS and Windows with a <b>laptop mode</b>: half-fold it and the bottom half becomes keyboard and trackpad</li>
+      <li>iOS on the cover screen, iPadOS on the inner one</li>
+      <li>Built properly from day one: specs, tests, no shortcuts</li>
+      <li><b>Stay tuned.</b> It will be big.</li>
+    </ul>
+  </div>
+</section>
+
+<footer class="wrap">
+  <p class="brand" style="font-size:24px">star<b>bite</b><sup>✦</sup></p>
+  <p>Our own code is under the MIT licence. Third-party parts keep their own licences (XNU APSL-2.0, Mesa MIT, Linux GPL-2.0, EDK2 BSD and others): see <code>THIRD-PARTY.md</code>.</p>
+  <p>Not affiliated with or endorsed by Apple, Samsung, Google, Microsoft, Arm or Broadcom. All names and logos are trademarks of their owners.</p>
+  <p>Built by the Starbite project with Claude.</p>
+</footer>
+</body>
+</html>
