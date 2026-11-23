@@ -80,10 +80,14 @@ h2{font-size:clamp(32px,4.4vw,52px);line-height:1.05;letter-spacing:-.035em;marg
 .sf h2 b{background:linear-gradient(100deg,#fff,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
 .sf ul{margin:0;padding-left:18px;color:var(--mut)}
 .sf li{margin:7px 0}
+.teaser{display:flex;gap:14px;align-items:center;margin:18px auto 0;padding:16px 22px;color:var(--fg);border-color:rgba(155,123,255,.45);background:linear-gradient(90deg,rgba(155,123,255,.18),rgba(77,163,255,.12))}
+.teaser:hover{text-decoration:none;border-color:var(--cyan)}
+.teaser .tk{flex:none;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:var(--violet);color:#fff}
 /* OS grid */
 .os{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .oscard{padding:24px;position:relative;overflow:hidden}
 .oscard .ic{width:54px;height:54px;border-radius:15px;display:grid;place-items:center;font-weight:900;font-size:20px;margin-bottom:16px;color:#fff}
+.oscard .ic img{width:28px;height:28px;filter:brightness(0) invert(1)}
 .oscard h3{margin:0 0 6px;font-size:21px;letter-spacing:-.01em}
 .oscard p{margin:0;color:var(--mut);font-size:15.5px}
 .oscard .lvl{position:absolute;top:22px;right:22px;font-size:12px;font-weight:700;color:var(--green);background:rgba(78,229,154,.1);border:1px solid rgba(78,229,154,.3);padding:3px 9px;border-radius:999px}
@@ -199,6 +203,8 @@ footer p{max-width:760px;margin:8px auto}
   <div class="stat glass"><div class="n">0</div><div class="l">vendor binaries in this repo</div></div>
 </div>
 
+<div class="wrap"><a class="teaser glass" href="#starfold"><span class="tk">Coming next</span><span><b>Starfold</b>: every OS on the Google Pixel 11 Pro Fold. Bigger, properly built, two screens. →</span></a></div>
+
 <section class="wrap" style="padding-top:60px">
   <div class="kicker">The headline</div>
   <h2>Things nobody had done before.</h2>
@@ -214,12 +220,12 @@ footer p{max-width:760px;margin:8px auto}
   <h2>Each of these ran on the phone itself.</h2>
   <p class="intro">Nothing here is an emulator or a virtual machine. Every system boots natively from Starbite's own loader in the phone's BOOT partition.</p>
   <div class="os">
-    <div class="oscard glass"><span class="lvl">Home screen</span><div class="ic" style="background:linear-gradient(135deg,#5ac8fa,#007aff)">iOS</div><h3>iOS 16 · 26 · 27, iPadOS 18</h3><p>Our own XNU kernel build, device tree and drivers. CoreAnimation draws the interface on the Mali, first through OpenGL ES, later through Metal on Vulkan.</p></div>
-    <div class="oscard glass"><span class="lvl">Desktop</span><div class="ic" style="background:linear-gradient(135deg,#b06ab3,#4568dc)">mac</div><h3>macOS Ventura &amp; Sequoia</h3><p>Menu bar, Dock and Finder, composited on the GPU through our Metal bridge. Touch works as a trackpad, at 2x HiDPI.</p></div>
-    <div class="oscard glass"><span class="lvl">Desktop + GPU</span><div class="ic" style="background:linear-gradient(135deg,#00c6ff,#0072ff)">W11</div><h3>Windows 11</h3><p>Our own UEFI, ACPI and drivers. A WDDM GPU driver on Mesa, all eight cores, x86 apps and Steam games, Geometry Dash at 60 fps.</p></div>
-    <div class="oscard glass"><span class="lvl">Desktop + GPU</span><div class="ic" style="background:linear-gradient(135deg,#f7b733,#fc4a1a)">Lx</div><h3>Linux · postmarketOS</h3><p>Mainline kernel with Panfrost GPU, display and Wi-Fi.</p></div>
-    <div class="oscard glass"><span class="lvl">Welcome screen</span><div class="ic" style="background:linear-gradient(135deg,#34a853,#4285f4)">CrOS</div><h3>ChromiumOS</h3><p>GPU-accelerated through Panfrost, with a working guest session.</p></div>
-    <div class="oscard glass"><span class="lvl">Home screen</span><div class="ic" style="background:linear-gradient(135deg,#3ddc84,#1a8f55)">And</div><h3>Android 17 · One UI 8</h3><p>Both boot from the same loader, side by side with everything else.</p></div>
+    <div class="oscard glass"><span class="lvl">Home screen</span><div class="ic" style="background:linear-gradient(135deg,#5ac8fa,#007aff)"><img src="img/os/si-apple.svg" alt="iOS"></div><h3>iOS 16 · 26 · 27, iPadOS 18</h3><p>Our own XNU kernel build, device tree and drivers. CoreAnimation draws the interface on the Mali, first through OpenGL ES, later through Metal on Vulkan.</p></div>
+    <div class="oscard glass"><span class="lvl">Desktop</span><div class="ic" style="background:linear-gradient(135deg,#b06ab3,#4568dc)"><img src="img/os/si-apple.svg" alt="macOS"></div><h3>macOS Ventura &amp; Sequoia</h3><p>Menu bar, Dock and Finder, composited on the GPU through our Metal bridge. Touch works as a trackpad, at 2x HiDPI.</p></div>
+    <div class="oscard glass"><span class="lvl">Desktop + GPU</span><div class="ic" style="background:linear-gradient(135deg,#00c6ff,#0072ff)"><img src="img/os/si-windows11.svg" alt="Windows"></div><h3>Windows 11</h3><p>Our own UEFI, ACPI and drivers. A WDDM GPU driver on Mesa, all eight cores, x86 apps and Steam games, Geometry Dash at 60 fps.</p></div>
+    <div class="oscard glass"><span class="lvl">Desktop + GPU</span><div class="ic" style="background:linear-gradient(135deg,#f7b733,#fc4a1a)"><img src="img/os/si-linux.svg" alt="Linux"></div><h3>Linux · postmarketOS</h3><p>Mainline kernel with Panfrost GPU, display and Wi-Fi.</p></div>
+    <div class="oscard glass"><span class="lvl">Welcome screen</span><div class="ic" style="background:linear-gradient(135deg,#34a853,#4285f4)"><img src="img/os/si-googlechrome.svg" alt="ChromiumOS"></div><h3>ChromiumOS</h3><p>GPU-accelerated through Panfrost, with a working guest session.</p></div>
+    <div class="oscard glass"><span class="lvl">Home screen</span><div class="ic" style="background:linear-gradient(135deg,#3ddc84,#1a8f55)"><img src="img/os/si-android.svg" alt="Android"></div><h3>Android 17 · One UI 8</h3><p>Both boot from the same loader, side by side with everything else.</p></div>
   </div>
 </section>
 
@@ -274,7 +280,7 @@ footer p{max-width:760px;margin:8px auto}
   <div class="kicker">From the lab</div>
   <h2>Stories behind it.</h2>
   <div class="stories">
-    <div class="story glass"><div class="big">190 °C</div><h3>The phone that became a hand warmer</h3><p>Starbite OS has a Survival Heat mode for real emergencies. It drives every core, the GPU and the charger at once. Normally it holds the chip at 149 °C, already far past the 125 °C its own thermometer is rated for. In one test, with the sensor's sanity check switched off, it read 190 °C. The back of the phone reached 74.5 °C, and the battery still has a hard stop.</p></div>
+    <div class="story glass"><div class="big">190 °C</div><h3>The phone almost exploded</h3><p>Survival Heat turns the phone into a hand warmer for real emergencies. It drives every core, the GPU and the charger at once. Normally it holds the chip at 149 °C, already far past the 125 °C its own thermometer is rated for. In one test, with the sensor's sanity check switched off, it read 190 °C. The back of the phone reached 74.5 °C, and the battery still has a hard stop.</p></div>
     <div class="story glass"><div class="big">858 MHz</div><h3>A GPU 43% past Samsung's top speed</h3><p>Samsung's tables stop the Mali-G72 at 598 MHz. Engineer OS, our bare-metal tuning tool, ran it at 858 MHz and read its own cycle counter to prove it. We also pushed all four big cores to 2886 MHz, past the stock 2704, until the power chip cut the whole phone off.</p></div>
     <div class="story glass"><div class="big">133,388</div><h3>Instructions rewritten</h3><p>iOS 26 uses a load instruction the S9's big cores have never heard of. Instead of patching programs one by one, one rule rewrote every occurrence across the entire system, all 133,388 of them, and iOS came up.</p></div>
     <div class="story glass"><div class="big">1 page</div><h3>The crash that left a note</h3><p>Windows died with no message. Samsung's firmware keeps one small piece of memory alive through a reset, so we made Windows write its last words there. On the next boot we read the stop code back. No more guessing.</p></div>
@@ -295,7 +301,7 @@ footer p{max-width:760px;margin:8px auto}
     <div class="ev"><div class="d">11-06 → 07</div><div class="t">One UI 8. Utility OS. Starbite OS 0.1. Windows Wi-Fi. Windows on the S9 as a Mac's second monitor.</div></div>
     <div class="ev"><div class="d">11-08 → 09</div><div class="t">Starbite OS 1.0. Our own code boots the Shannon modem. Windows draws its own screen on the Mali.</div></div>
     <div class="ev"><div class="d">11-10 → 11</div><div class="t">Windows on the big cores, x86 apps and Steam. LTE data inside Starbite OS. iOS 27 home screen.</div></div>
-    <div class="ev"><div class="d">11-12 → 16</div><div class="t">Starbite OS Next with Linux apps and an App Store. macOS Sequoia. Geometry Dash at 60 fps on Windows. A second S9 set up from our scripts.</div></div>
+    <div class="ev"><div class="d">11-12 → 16</div><div class="t">Starbite OS Next with Linux apps and an App Store. macOS Sequoia. Geometry Dash at 60 fps on Windows.</div></div>
   </div>
 </section>
 
@@ -304,7 +310,7 @@ footer p{max-width:760px;margin:8px auto}
   <h2>There is no installer. You figure it out.</h2>
   <div class="try">
     <div class="box glass warn"><h3>⚠ Read this first</h3><ul>
-      <li><b>This is not a product.</b> There is no installer that sets things up for you. What's here is the source, the scripts and the notes we used on our own two phones. Getting it onto yours means reading code, fixing paths and working out the gaps yourself.</li>
+      <li><b>This is not a product, and there is no working installer.</b> We started one and never finished it. It never fully set up a phone, and several of the systems were never part of it at all. Every OS here was brought up by hand, step by step. Getting it onto your phone means reading the code and notes, fixing paths and working out the gaps yourself.</li>
       <li>You need your <b>own copies</b> of every OS. No Apple, Samsung, Google, Microsoft or Broadcom files are included, and we won't share them.</li>
       <li>Only the <b>Exynos Galaxy S9 (SM-G960F)</b>. Other models won't work as is.</li>
       <li>It changes partitions on your phone. <b>It can brick it.</b> Back up everything. You use it at your own risk.</li>
@@ -314,7 +320,7 @@ footer p{max-width:760px;margin:8px auto}
       <li><b>Read</b> the <code>docs/</code> folder and the branch that covers what you want. The notes are detailed.</li>
       <li><b>Build the loader</b> (<code>shim/starlte</code>) and the tools on a Mac or a Linux VM.</li>
       <li><b>Make your own OS images</b> with the scripts under <code>tools/</code>, using your own original software.</li>
-      <li><b>Study the <code>installer</code> branch.</b> It holds the steps we used on our second S9, not a tool that does it for you.</li>
+      <li><b>Expect to do it by hand.</b> The <code>installer</code> branch is an unfinished experiment. Use it as notes, not as a tool.</li>
     </ol></div>
   </div>
   <div class="box glass" style="margin-top:16px"><h3>Branches</h3><table>
@@ -322,7 +328,7 @@ footer p{max-width:760px;margin:8px auto}
     <tr><td>starbite-os</td><td>Starbite OS Next: kernel, shell, drivers, modem, Survival Heat, Face Unlock</td></tr>
     <tr><td>win11-mali-gpu</td><td>Windows WDDM GPU driver on Mesa for the Mali-G72</td></tr>
     <tr><td>win11-m3-bigcores</td><td>Windows on the Exynos M3 big cores, and the x86 fixes</td></tr>
-    <tr><td>installer</td><td>The scripts and steps we used on our second S9 (not a finished installer)</td></tr>
+    <tr><td>installer</td><td>An unfinished installer experiment. It never fully set up a phone, and several OSes were never in it.</td></tr>
     <tr><td>more</td><td>Wi-Fi core, App Store, USB control, Utility OS, Engineer OS, Linux port, design specs</td></tr>
   </table></div>
 </section>
@@ -357,7 +363,6 @@ footer p{max-width:760px;margin:8px auto}
   <p class="brand" style="font-size:24px">star<b>bite</b><sup>✦</sup></p>
   <p>Our own code is under the MIT licence. Third-party parts keep their own licences (XNU APSL-2.0, Mesa MIT, Linux GPL-2.0, EDK2 BSD and others): see <code>THIRD-PARTY.md</code>.</p>
   <p>Not affiliated with or endorsed by Apple, Samsung, Google, Microsoft, Arm or Broadcom. All names and logos are trademarks of their owners.</p>
-  <p>Built by the Starbite project with Claude.</p>
 </footer>
 </body>
 </html>
