@@ -36,7 +36,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .brand{font-weight:800;font-size:20px;letter-spacing:-.02em;color:var(--fg)}
 .brand b{color:var(--cyan)}
 .brand sup{color:var(--cyan);font-size:14px}
-nav .links{display:flex;gap:22px;font-size:15px}
+nav .links{display:flex;gap:22px;font-size:15px;align-items:center;white-space:nowrap}
 nav .links a{color:var(--mut)}
 nav .links a:hover{color:var(--fg);text-decoration:none}
 .gh{padding:8px 14px;border-radius:999px;background:var(--fg);color:#0b1230 !important;font-weight:700}
@@ -145,6 +145,7 @@ footer{padding:70px 20px 60px;color:var(--dim);font-size:14px;text-align:center}
 footer p{max-width:760px;margin:8px auto}
 
 @media(max-width:920px){
+  nav .links a:not(.gh){display:none}
   .hero{grid-template-columns:1fr;padding-top:50px}
   .hero>*{min-width:0}
   .phones{height:470px;max-width:520px;margin:0 auto;width:100%}
